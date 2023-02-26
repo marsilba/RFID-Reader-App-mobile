@@ -15,3 +15,7 @@ When the passenger is found, his photo, his name and the company he works for ar
 If the passenger is not found at the local bank, an error message will be displayed, denying access.
 
 All updates performed on the server are replicated on all readers, as the reader searches for updates in a time interval.
+
+
+https://user-images.githubusercontent.com/28272136/221397336-95cabc65-3735-431e-b69e-d4cfbcca2bd7.mp4
+
