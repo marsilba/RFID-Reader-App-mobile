@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+<style>
+html, body {min-height:100%; height:100%;}
+body{background:#ccc; margin:0px; padding:0px; text-align:center; font-family:Open Sans, sans-serif; color:#fff; font-weight:700; letter-spacing:1px; text-transform:uppercase;}
+#container{margin:auto; width:100%; height:100%; min-height:100%; overflow:hidden; background-image:url(images/bg.jpg); background-repeat:no-repeat; background-size:cover; background-position:center top;box-sizing:border-box; padding:20px;}
+div{width:100%; position:relative;}
+#topbar{margin-bottom:25px;}
+#topbar span, #topbar img{display:inline-block;}
+#topbar span:first-child{position:absolute; top:0px; left:0px;}
+#topbar span:last-child{position:absolute; top:0px; right:0px;}
+#topbar img{width:40px;}
+#number{margin-bottom:25px;}
+#number span:first-child{width:100%; display:block;}
+#number span:last-child{width:100%; display:block; font-size:1em; margin-top:-10px;}
+#box{width:80%; height:300px; border-radius:10%; background:#fff; margin:auto; margin-top:50px;}
+#box div{width:100%; color:#2f2f2f;}
+#message a{text-decoration:none; color:#fff; display:block; width:100%;}
+#message a:first-child{padding:20px 0px;}
+	
+.circulo{
+ border: 1px solid #000;
+ border-radius:30px;
+ width:50px;
+ height:50px;
+ text-align:center;
+ vertical-align: middle;
+ background-color: #ffe;
+ line-height:50px;    
+ box-shadow: 2px 2px 5px #999;
+}
+	
+#box-image{width:500px; height:500px; border-radius:10%; background:#fff; margin:auto; background-repeat:no-repeat; background-size:cover; background-position:center center;}
+#message-user{text-decoration:none; color:#fff; display:block; width:100%;}
+#message-user span:first-child{width:100%; display:block; font-size:1.5em; margin:25px 0px;}
+#message-user span:last-child{width:100%; display:block; font-size:0.9em;}
+
+</style>
+</head>
+
+<!--<script type="text/javascript" src="cordova.js"></script>-->
+<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="js/java.js"></script>-->
+<!--<script type="text/javascript" src="js/java01.js"></script>-->
+<script type="text/javascript" src="cordova.js"></script>
+
+		<!--<script src="js/jquery.min.js"></script>-->
+		<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>-->
+		<!--<script type="text/javascript" src="js/index.js"></script>-->
+	
+			
+<body>
+<div id="container">
+	<div id="topbar">
+		<span class="time" style="font-size:1em;"></span>
+		<img src="images/logo.png">
+		<span class="date" style="font-size:1em;"></span>
+	</div>
+	<div id="dentro" style="width:100%; min-height:100%;">
+	  <div id="number">
+			<span style="font-size:0.7em; padding-top:20px;">Linha</span>
+			<span style="font-size:1.2em; padding-top:20px;">Barra X Centro</span>
+			<span style="font-size:0.7em; padding-top:10px;">Via Alto da Boa Vista</span>
+	  </div>	  
+	  <div id="box">		
+		<div id="assentos" style="font-size:8em; padding-top:30px;"></div>
+		<div style="font-size:1em;">assentos</div>
+		<div style="font-size:1em;">disponíveis</div>
+	  </div>
+	  <div id="message" style="margin-top:40px;">
+		<div id="tela2"><span style="font-size:1.5em;">passe seu cartão</span></div>
+		<div id="tela3"><i class="fa fa-chevron-down" aria-hidden="true" style="font-size:4em;"></i></div>
+	  </div>
+	
+	</div>
+	<div id="botaoMais" style="font-size:3em; position: relative; float: right; margin-left: 130px; margin-top: -400px; color: black;" class="circulo">+</div>
+	<div id="botaoMenos" style="font-size:3em; position: relative; float: left; margin-left: 2px; margin-top: -400px; color: black;" class="circulo">-</div>
+</div>
+</body>
+
+	
+	<script>
+		
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		function onDeviceReady() {
+			
+			var valorContagem = 50;
+			$( "#assentos" ).html(valorContagem);
+			
+			
+		$('#botaoMais').click(function(){
+		
+			valorContagem += 1;
+			$( "#assentos" ).html(valorContagem);
+
+		})
+			
+		
+		$('#botaoMenos').click(function(){
+		
+			valorContagem -= 1;
+			$( "#assentos" ).html(valorContagem);
+
+		})
+		
+			
+			
+			
+			
+			
+			var myDB = window.sqlitePlugin.openDatabase({name: "controleAcesso.db", location: 'default'});
+			
+			//myDB.transaction(function(transaction) {
+				//transaction.executeSql('CREATE TABLE IF NOT EXISTS dados (id integer primary key autoincrement, rfid varchar(50), nome varchar(100), condominio varchar(250), foto text, situacao varchar(5))', [],
+				
+				//transaction.executeSql('CREATE TABLE IF NOT EXISTS contagem (id integer primary key)', [],
+									   
+					//function(tx, result) {
+						//alert("Table created successfully");
+					//},
+					//function(error) {
+						//alert("Error occurred while creating the table.");
+					//});
+			//});
+						
+			//myDB.transaction(function(transaction) {
+				//var executeQuery = "INSERT INTO dados (rfid, nome, condominio, foto, situacao) VALUES (?, ?, ?, ?, ?)";
+				//transaction.executeSql(executeQuery, ['82125456456', 'Carla', 'Condomínio Barra Bali', 'f78545f4gf5d4greter86tr', 'b'], function(tx, result) {
+						//alert('Inserted');
+					//},
+					//function(error) {
+						//alert('Error occurred');
+					//});
+			//});
+						
+			//var foto = '';
+			
+			//myDB.transaction(function(transaction) {
+			//var executeQuery = "UPDATE dados SET rfid=?, nome=?, condominio=?, foto=?, situacao=? WHERE id=?";
+			//transaction.executeSql(executeQuery, ['0777597554', 'Ricardo', 'Lyon', foto, 'b', '3'],
+				////On Success
+				//function(tx, result) {
+					//alert('Updated successfully');
+				//},
+				////On Error
+				//function(error) {
+					//alert('Something went Wrong');
+				//});
+			//});
+			
+			
+			//myDB.transaction(function(transaction) {
+			//var executeQuery = "UPDATE dados SET rfid=? WHERE id=?";
+			//transaction.executeSql(executeQuery, ['0777991266', '3'],
+				////On Success
+				//function(tx, result) {
+					//alert('Updated successfully');
+				//},
+				////On Error
+				//function(error) {
+					//alert('Something went Wrong');
+				//});
+			//});
+
+
+				
+			
+			
+			//myDB.transaction(function(transaction) {
+			//transaction.executeSql('SELECT * FROM dados WHERE rfid=', [], function(tx, results) {
+				//var len = results.rows.length,
+					//i;
+				//$("#rfid").append(len);
+				//for (i = 0; i < len; i++) {
+					//$("#lista").append("<tr><td>" + results.rows.item(i).id + " / </td><td>" + results.rows.item(i).rfid + " / </td><td>" + results.rows.item(i).nome + "</td></tr>");
+					
+					//$("#foto").attr('src', "data:image/jpg;base64," + results.rows.item(i).foto)
+					
+				//}
+			//}, null);
+		//});
+			
+			
+		//$("#rfid").html(valorContagem);
+			
+		//<preference name="KeyboardDisplayRequiresUserAction" value="false" />
+		var audioOk = new Audio('sounds/beepOk.m4a');
+		var audioErro = new Audio('sounds/beepErro.m4a');
+		var audioOk1 = new Audio('sounds/beepOk.m4a');
+
+			
+		webserver.onRequest(
+			function(request) {				
+				if(request.body == "saida"){
+					
+					valorContagem -= 1;
+					$( "#assentos" ).html(valorContagem);
+					
+				}else{				
+								
+				var valorRfid = request.body;
+				var valorRfid1 = valorRfid.toString();	
+				//alert(valorRfid);
+					
+					
+				myDB.transaction(function(transaction) {
+			transaction.executeSql('SELECT * FROM dados', [], function(tx, results) {
+				var len = results.rows.length,
+					i;
+				//$("#rfid").append(len);
+				for (i = 0; i < len; i++) {
+					//$("#lista").append("<tr><td>" + results.rows.item(i).id + " / </td><td>" + results.rows.item(i).rfid + " / </td><td>" + results.rows.item(i).nome + "</td></tr>");
+					
+					//$("#foto").attr('src', "data:image/jpg;base64," + results.rows.item(i).foto)
+					alert(results.rows.item(i).nome);
+					
+				}
+			}, null);
+		});
+			
+					
+				myDB.transaction(function(transaction) {
+				transaction.executeSql('SELECT * FROM dados WHERE rfid=?', [valorRfid1], function(tx, results) {
+				var len = results.rows.length;
+					alert(len);
+															
+					if(len<1){ // cartão não cadastrado
+					
+					alert('nao cadastrado');
+					//audioErro.play();
+
+					montaTelaErro = '<div id="box-image" style="background-image:url(images/user4.jpg); margin-top:120px;"><div id="box-denied" style="width:500px; height:500px; border-radius:10%; background-color: rgba(255, 44, 44, 0.5);"></div></div><div id="message-user"><span style="font-size:3em; margin-top:30px;">Cartão inválido</span><span style="font-size:2em;">Não existe registro<br>deste cartão</span></div><div id="seta" style="width:100%; font-size:8em; margin-top:5px;"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>';
+
+					retornaTela = '<div id="number"><span style="font-size:0.5em; padding-top:20px;">Linha</span><span style="font-size:1em; padding-top:20px;">Barra X Centro</span><span style="font-size:0.5em; padding-top:10px;">Via Alto da Boa Vista</span></div><div id="box"><div id="assentos" style="font-size:14em; padding-top:30px;"></div><div style="font-size:1em;">assentos</div><div style="font-size:1em;">disponíveis</div></div><div id="message" style="margin-top:40px;"><div id="tela2"><span style="font-size:1.5em;">passe seu cartão</span></div><div id="tela3"><i class="fa fa-chevron-down" aria-hidden="true" style="font-size:4em;"></i></div></div>';
+
+
+						$( "#dentro" ).html( montaTelaErro );
+
+						setTimeout(function(){	
+							$( "#dentro" ).html( retornaTela );
+						}, 3000);
+
+						
+						
+					
+					}else{
+						
+						alert('liberado');
+						
+					var nome = results.rows.item(0)['nome'];
+					var condominio = results.rows.item(0)['condominio'];
+					var foto = results.rows.item(0)['foto'];
+					var situacao = results.rows.item(0)['situacao'];
+						
+						alert(nome);
+						
+						if(situacao == 'l'){ // usuario liberado
+						
+						//$("#foto").attr('src', "data:image/jpg;base64," + results.rows.item(i).foto)
+
+						//audioOk.play();
+
+						montaTela = '<div id="box-image" style="background-image:url(data:image/jpg;base64,'+foto+'); margin-top:120px;"></div><div id="message-user"><span style="font-size:3em; margin-top:30px;">'+nome+'</span><span style="font-size:2em;">'+condominio+'<br>bloco 2 - apt. 1204</span></div><div id="seta" style="width:100%; font-size:8em; margin-top:5px;"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i></div>';
+
+						retornaTela = '<div id="number"><span style="font-size:0.5em; padding-top:20px;">Linha</span><span style="font-size:1em; padding-top:20px;">Barra X Centro</span><span style="font-size:0.5em; padding-top:10px;">Via Alto da Boa Vista</span></div><div id="box"><div id="assentos" style="font-size:14em; padding-top:30px;"></div><div style="font-size:1em;">assentos</div><div style="font-size:1em;">disponíveis</div></div><div id="message" style="margin-top:40px;"><div id="tela2"><span style="font-size:1.5em;">passe seu cartão</span></div><div id="tela3"><i class="fa fa-chevron-down" aria-hidden="true" style="font-size:4em;"></i></div></div>';
+
+						$( "#dentro" ).html( montaTela );
+
+						setTimeout(function(){	
+							$( "#dentro" ).html( retornaTela );
+
+							valorContagem -= 1;
+
+							$( "#assentos" ).html(valorContagem);
+
+						}, 3000);
+
+
+						}else{ // usuario bloqueado
+
+						//audioErro.play();
+							
+						alert('bloqueado');
+
+						montaTelaErro = '<div id="box-image" style="background-image:url(data:image/jpg;base64,'+foto+'); margin-top:120px;"><div id="box-denied" style="width:500px; height:500px; border-radius:10%; background-color: rgba(255, 44, 44, 0.5);"></div></div><div id="message-user"><span style="font-size:3em; margin-top:30px;">'+nome+'</span><span style="font-size:2em;">'+condominio+'<br>bloco 5 - apt. 304</span></div><div id="seta" style="width:100%; font-size:8em; margin-top:5px;"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>';
+
+						retornaTela = '<div id="number"><span style="font-size:0.5em; padding-top:20px;">Linha</span><span style="font-size:1em; padding-top:20px;">Barra X Centro</span><span style="font-size:0.5em; padding-top:10px;">Via Alto da Boa Vista</span></div><div id="box"><div id="assentos" style="font-size:14em; padding-top:30px;"></div><div style="font-size:1em;">assentos</div><div style="font-size:1em;">disponíveis</div></div><div id="message" style="margin-top:40px;"><div id="tela2"><span style="font-size:1.5em;">passe seu cartão</span></div><div id="tela3"><i class="fa fa-chevron-down" aria-hidden="true" style="font-size:4em;"></i></div></div>';
+
+
+							$( "#dentro" ).html( montaTelaErro );
+
+							setTimeout(function(){	
+								$( "#dentro" ).html( retornaTela );
+							}, 3000);
+
+
+						}		
+								
+						
+					}
+					
+					
+				
+			}, null);
+		});
+							
+		
+				
+				
+				webserver.sendResponse(
+					request.requestId,
+					{
+						status: 200,
+						body: '<html>Ok</html>',
+						headers: {
+							'Content-Type': 'text/html'
+						}
+					}
+				);		
+					
+			
+					
+			}
+				
+		});
+			
+			
+			
+		webserver.start();
+
+		//... after a long long time
+		// stop the server
+		//webserver.stop();
+	
+	
+			
+		
+	
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function criaData(){ 
+    var data = new Date();
+    var dia = data.getDate();
+    if (dia.toString().length == 1)
+      dia = "0"+dia;
+    var mes = data.getMonth()+1;
+    if (mes.toString().length == 1)
+      mes = "0"+mes;
+    var ano = data.getFullYear();  
+    var dataFormat = dia+"/"+mes+"/"+ano;
+
+$('.date').html('<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;'+dataFormat);
+
+//setTimeout(function(){	
+	//	criaData();
+	//}, 100);
+
+}
+
+criaData();
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+function moveRelogio(){ 
+   	momentoAtual = new Date(); 
+   	hora = momentoAtual.getHours(); 
+   	minuto = momentoAtual.getMinutes(); 
+   	segundo = momentoAtual.getSeconds();
+	
+	if(hora < 10){
+		
+	hora1 = '0'+hora;
+	}else{
+	hora1 = hora;	
+	}
+	
+	if(minuto < 10){
+		
+	minuto1 = '0'+minuto;
+	}else{
+	minuto1 = minuto;	
+	} 
+
+   	horaImprimivel = hora1 + ":" + minuto1; 
+
+	$('.time').html('<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;'+horaImprimivel);
+		
+	setTimeout(function(){	
+		moveRelogio();
+	}, 1000);
+		
+} 
+
+moveRelogio();
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+}
+
+
+//0777991266
+//0423595804
+//0777597554
+	
+	</script>
+		
+	    
+</html>

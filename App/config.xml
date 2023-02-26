@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="busonline.leitor" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>BusOnline Leitor</name>
+    <description>
+        BusOnline Leitor
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+	<access origin="*" />
+    <allow-navigation href="*" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
+    <content src="index04.html" />    
+	
+    <preference name="Fullscreen" value="true" />    
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+		<icon src="hooks/mipmap-hdpi/icon.png" density="hdpi" />
+        <icon src="hooks/mipmap-xhdpi/icon.png" density="xhdpi" />
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
