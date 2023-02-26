@@ -12,7 +12,7 @@ When passing the card through the rfid reader, the ESP32 reads it and sends it v
 
 When the passenger is found, his photo, his name and the company he works for are displayed.
 
-If the passenger is not found at the local bank, an error message will be displayed, denying access.
+If the passenger is not found at the local database, an error message will be displayed, denying access.
 
 All updates performed on the server are replicated on all readers, as the reader searches for updates in a time interval.
 
