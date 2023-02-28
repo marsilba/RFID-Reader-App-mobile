@@ -27,6 +27,7 @@ Software:
 - Ajax
 - SQLite Database
 - C++ (Esp32)
+- C# (Server)
 
 Operation:
 
