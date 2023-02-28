@@ -33,7 +33,7 @@ Operation:
 - Enter the admin and register a passenger
 - Send a photo and inform the name and company
 - Click save
-The app checks the server for updates every 30 seconds
+- The app checks the server for updates every 30 seconds
 - When a new passenger is registered, the app is updated and saves the data in a local database
 - When getting on the bus, the passenger passes the RFID card over the reader, which sends the data to the app via Wifi
 - The app searches the passenger id in the local database and returns the photo and data
