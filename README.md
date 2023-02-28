@@ -28,6 +28,22 @@ Software:
 - SQLite Database
 - C++ (Esp32)
 
+Operation:
+
+- Enter the admin and register a passenger
+- Send a photo and inform the name and company
+- Click save
+The app checks the server for updates every 30 seconds
+- When a new passenger is registered, the app is updated and saves the data in a local database
+- When getting on the bus, the passenger passes the RFID card over the reader, which sends the data to the app via Wifi
+- The app searches the passenger id in the local database and returns the photo and data
+- If the id is not found, the app returns a denial screen.
+
+It is not necessary to have an internet signal to validate the RFID card since this validation is done directly in the local database.
+
+If it were to depend on the 4G signal to query the server, there are places with shadow areas where the 4G signal does not work, so it would not be possible to validate the RFID card, so the local database is always kept up to date.
+
+
 
 https://user-images.githubusercontent.com/28272136/221397336-95cabc65-3735-431e-b69e-d4cfbcca2bd7.mp4
 
