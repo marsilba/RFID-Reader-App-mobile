@@ -1,4 +1,4 @@
-# RFID-Reader-App-Cordova
+# RFID-Reader-App-mobile
 
 Project developed for a bus company to control passengers using rfid card.
 
