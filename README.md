@@ -16,6 +16,18 @@ If the passenger is not found at the local database, an error message will be di
 
 All updates performed on the server are replicated on all readers, as the reader searches for updates in a time interval.
 
+Hardware used:
+- Esp32
+- RFID reader MRFC522
+
+Software:
+- Cordova
+- Javascript
+- jQuery
+- Ajax
+- SQLite Database
+- C++ (Esp32)
+
 
 https://user-images.githubusercontent.com/28272136/221397336-95cabc65-3735-431e-b69e-d4cfbcca2bd7.mp4
 
