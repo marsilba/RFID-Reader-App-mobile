@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="modal" id="_modal" role="dialog" aaria-hidden="true" data-backdrop="static" data-keyboard="false" style="background: rgb(0 0 0 / 69%)">
+    <div id="_modal_dialog" class="modal-dialog mt-3">
+        <div class="modal-content">
+            <div class="card-header text-white text-center bg-info text-uppercase">
+                <button id="btnFecharModal" type="button" class="close" data-dismiss="modal" style="font-size: 20px !important;">&times;</button>
+                <h5 class="modal-title font-weight-bold" id="_modal_title" style="font-size: 16px !important;"></h5>
+            </div>
+            <div class="modal-body" id="_modal_body"></div>
+            <div class="modal-footer" id="_modal_footer">
+                <button id="btnLimparModal" type="button" class="btn btn-link botao-modal ml-3 d-none" onclick="javascript: limpar();">Limpar</button>
+                <button id="btnSalvarModal" type="button" class="btn btn-success botao-modal ml-3 d-none" onclick="javascript: salvar();">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

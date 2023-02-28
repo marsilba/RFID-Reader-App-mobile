@@ -1,0 +1,210 @@
+﻿@model List<ControlePassageiros.WebApplication.PassageiroResponse>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .btn-situacao {
+        width: 100px !important;
+        height: 20px !important;
+        font-size: 14px !important;
+        padding: 1px !important;
+        margin: 0px !important;
+    }
+
+    .btn-liberado {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .bg-liberado {
+        width: 100px;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .bg-bloqueado {
+        width: 100px;
+        border: none;
+        background-color: #dc3545;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+
+    .botao-bloqueado {
+        background-color: #f44336 !important;
+        width: 30px !important;
+        height: 30px !important;
+        padding: 5px;
+    }
+
+    .botao-editar {
+        background-color: #4487bd !important;
+        width: 30px !important;
+        height: 30px !important;
+        padding: 5px;
+    }
+
+    .legenda {
+        font-weight: 900 !important;
+        color: #555 !important;
+        font-size: 14px !important;
+    }
+
+    .dados {
+        font-size: 13px !important;
+    }
+
+    .card-box {
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 48%) !important;
+    }
+
+    .card .card-header-success .card-icon, .card .card-header-success .card-text, .card .card-header-success:not(.card-header-icon):not(.card-header-text), .card.bg-success, .card.card-rotate.bg-success .back, .card.card-rotate.bg-success .front {
+        background: linear-gradient(60deg,#28a745,#28a745);
+    }
+
+    .card-stats .card-header.card-header-icon i {
+        font-size: 30px;
+        line-height: 40px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+
+    .fundo-cinza {
+        background-color: #eeeeee42 !important;
+    }
+
+    .card {
+        background-color: white !important;
+    }
+
+    .card-legend {
+        color: #555 !important;
+    }
+
+</style>
+
+<div id="divFiltro">
+    @Html.PartialAsync("Listagem", Model).Result
+</div>
+
+@Html.PartialAsync("Modal").Result
+
+<script type="text/javascript">
+    var $acao = 'cadastrar';
+
+    $(document).ready(function () {
+        $('#_modal').on('shown.bs.modal', function () {
+            framework.configurarSelect2();
+
+            framework.configurarDatePicker($('#DataCadastro'));
+
+        });
+
+        $('#_modal').on('hidden.bs.modal', function () {
+            $acao = 'cadastrar';
+        });
+    });
+
+    function resetar(_status) {
+        const options = {
+            url: '@Url.Action("ResetarBase", "Passageiros")',
+            type: 'POST',
+            dados: { status: _status }
+        }
+
+        framework.requisicao(options, function (response) {
+            if (response.success) {
+                $.notifySuccess(response.message);
+                refreshGrid();
+                return;
+            }
+
+            $.notifyWarning(response.message);
+        });
+    }
+
+    function cadastrar() {
+        $acao = 'cadastrar';
+
+        const arrayBotoes = ['btnLimparModal', 'btnSalvarModal'];
+        framework.abrirModalSmall('@Url.Action("Cadastrar", "Home")', 'Cadastro de Usuários', arrayBotoes);
+    }
+
+    function salvar() {
+        $('#Situacao').val($('#chkSituacao')[0].checked);
+
+        const form = $(document.getElementById("frmCadastro"));
+        const url = $acao == 'cadastrar' ? '@Url.Action("Incluir", "Home")' : '@Url.Action("Alterar", "Home")';
+
+        framework.submeterForm(form, url, function (response) {
+            if (response.success) {
+                $.notifySuccess(response.message);
+                framework.fecharModal();
+
+                refreshGrid();
+                return;
+            }
+
+            $.notifyWarning(response.message);
+        });
+    }
+
+    function editar(_rfid) {
+        $acao = 'editar';
+
+        const arrayBotoes = ['btnSalvarModal'];
+        const options = {
+            url: '@Url.Action("Editar", "Home")',
+            type: 'GET',
+            dados: { rfid: _rfid }
+        };
+
+        framework.requisicao(options, function (response) {
+            framework.carregarModalSmall(response, 'Cadastro de Usuários', arrayBotoes);
+        });
+    }
+
+    function refreshGrid() {
+        $acao = 'cadastrar';
+
+        const options = {
+            url: '@Url.Action("Pesquisar", "Home")',
+            type: 'GET'
+        }
+
+        framework.requisicao(options, function (response) {
+            $('#divFiltro').html(response);
+        });
+    }
+
+    function bloquear(_rfid) {
+        const options = {
+            url: '@Url.Action("Bloquear", "Passageiros")',
+            type: 'GET',
+            dados: { rfid: _rfid }
+        }
+
+        framework.requisicao(options, function (response) {
+            if (response.success) {
+
+                $.notifySuccess(response.message);
+                refreshGrid();
+                return;
+            }
+
+            $.notifyWarning(response.message);
+        });
+    }
+
+</script>

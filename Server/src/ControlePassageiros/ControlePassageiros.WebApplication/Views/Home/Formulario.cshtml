@@ -1,0 +1,88 @@
+﻿@model ControlePassageiros.WebApplication.PassageiroRequest
+@{
+    Layout = null;
+}
+
+<div class="card card-form card-box">
+    <form id="frmCadastro" method="post" enctype="multipart/form-data">
+        @Html.HiddenFor(x => x.PassageiroId)
+        @Html.HiddenFor(x => x.Situacao)
+
+        <div id="divCadastro" class="card-body">
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    @if (!Model.PassageiroId.HasValue)
+                    {
+                        <img src="~/images/usuario/user-default.png" style="width: 85px; border-radius: 50%;" />
+                    }
+                    else
+                    {
+                        <img src="data:image/jpeg;base64,@Model.Foto" style="width: 85px; border-radius: 50%;" />
+                    }
+                </div>
+                <div class="col-md-6 pt-4">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Situacao, new { @class = "text-uppercase legenda" })</div>
+                        <div class="togglebutton">
+                            <label id="lblCheckSituacao" style="font-size: 16px; font-weight: bold;">
+                                <input id="chkSituacao" type="checkbox" checked="@Model.Situacao"><span class="toggle"></span>
+                                Liberado
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Nome, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.Nome, new { @class = "form-control"})</div>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Nome)
+                </div>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Condominio, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.DropDownListFor(x => x.Condominio, Model.ListaCondominios, "", new { id = "ListaCondominios", @class = "form-control seleciona-form" })</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row pt-3">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Telefone, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.Telefone, new { @class = "form-control"})</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Cpf, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.Cpf, new { @class = "form-control"})</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.Email, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.Email, new { @class = "text-lowercase form-control"})</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row pt-3">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.DataCadastro, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.DataCadastro, new { @class = "form-control"})</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <div class="list-group-item">@Html.LabelFor(x => x.RfId, new { @class = "text-uppercase legenda" })</div>
+                        <div class="list-group-item">@Html.TextBoxFor(x => x.RfId, new { @class = "form-control"})</div>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.RfId)
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

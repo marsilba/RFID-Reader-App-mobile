@@ -1,0 +1,54 @@
+﻿body {
+}
+
+#demo h1 /* delet it */ {
+    text-align: center;
+    color: #888;
+    padding-bottom: 5px;
+}
+
+#demo p /* delet it */ {
+    text-align: center;
+    color: #777;
+    padding-bottom: 15px;
+    font-size: 21px;
+    letter-spacing: 1px;
+}
+
+#demo .row /* delet it */ {
+    padding-top: 20vh;
+    padding-bottom: 40px;
+}
+
+#demo img {
+    box-shadow: 1px 1px 5px #000;
+    max-height: 15em; /* delet it */
+}
+
+    #demo img:hover {
+        transition: all 0.6s; /* Change Speed */
+        -ms-transform: scale(2, 2); /* IE 9 */
+        -webkit-transform: scale(2, 2); /* Safari */
+        transform: scale(2, 2); /* Change Size */
+        overflow: visible;
+        z-index: 1 !important; /* you can change it, but better let this in default */
+    }
+
+
+#demo .item-1:hover {
+    -ms-transform: translate(100px); /* IE 9 */
+    -webkit-transform: translate(100px); /* Safari */
+    transform: translate(100px); /* Change Offset */
+    z-index: 2; /* you can change it, but better let this in default */
+}
+
+#demo .item-2:hover {
+    z-index: 2; /* you can change it, but better let this in default */
+}
+
+#demo .item-3:hover {
+    -ms-transform: translate(-100); /* IE 9 */
+    -webkit-transform: translate(-100px); /* Safari */
+    transform: translate(-100px); /* Change Offset */
+    z-index: 2; /* you can change it, but better let this in default */
+}

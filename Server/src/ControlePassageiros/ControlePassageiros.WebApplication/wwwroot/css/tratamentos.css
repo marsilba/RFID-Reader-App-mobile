@@ -1,0 +1,55 @@
+﻿.bg-linha-par {
+    background-color: #EAECEE !important;
+    margin-bottom: 0px !important;
+}
+
+.bg-linha-impar {
+    background-color: #F2F4F4 !important;
+    margin-bottom: 0px !important;
+}
+
+.listagem {
+    margin-bottom: 0px !important;
+    color: white;
+    font-weight: bold !important;
+}
+
+.font-listagem {
+    color: darkgray !important;
+    font-weight: bold !important;
+}
+
+.listagem {
+    font-size: 14px !important;
+}
+
+.lista {
+    min-width: 50px !important;
+    text-align: center !important;
+    font-size: 12px !important;
+}
+
+.li acttive {
+    color: white;
+}
+
+a {
+    color: grey;
+}
+
+    a:hover {
+        color: #337ab7;
+    }
+
+.card {
+    font-size: medium !important;
+}
+
+.nav > li > a {
+    padding: 5px 10px;
+}
+
+.lst-header {
+    color : white;
+    font-weight: bold;
+}

@@ -1,0 +1,106 @@
+﻿.timeline-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0px !important;
+    color: gray !important;
+}
+
+.nav-timeline {
+    display: block !important;
+}
+
+.btn-edit-timeline {
+    background-color: #4487bd !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 6px;
+    margin-right: 20px;
+    margin-top: -10px !important;
+    font-weight: bold;
+}
+
+.btn-delete-timeline {
+    background-color: #f44336 !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 6px;
+    margin-right: 20px;
+    margin-top: -10px !important;
+    font-weight: bold;
+}
+
+.btn-add-timeline {
+    background-color: #28a745 !important;
+}
+
+.btn-confirm-timeline {
+    background-color: #28a745 !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 6px;
+    margin-right: 20px;
+    margin-top: -10px !important;
+    font-weight: bold;
+}
+
+.title-danger {
+    height: 20px !important;
+    font-size: 16px !important;
+    margin-top: -10px !important;
+    background-color: #f44336;
+}
+
+.title-success {
+    height: 20px !important;
+    font-size: 16px !important;
+    margin-top: -10px !important;
+    background-color: #28a745;
+}
+
+.title-warning {
+    height: 20px !important;
+    font-size: 16px !important;
+    margin-top: -10px !important;
+    background-color: #ff9900;
+}
+
+.label-informacao {
+    font-size: 12px;
+}
+
+.title-tab {
+    font-size: 16px;
+    font-weight: bold;
+    color: gray;
+}
+
+.timeline {
+    padding: 0px 0 !important;
+}
+
+.timeline > li > .timeline-badge.success {
+    background-color: #28a745;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(68,135,189,.4)
+}
+
+.timeline > li > .timeline-badge.warning {
+    background-color: #ff9900;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(68,135,189,.4)
+}
+
+.timeline > li > .timeline-badge.danger {
+    background-color: #f44336;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(68,135,189,.4)
+}
+
+.timeline > li > .timeline-panel.success {
+    box-shadow: 0 1px 4px 0 #28a745;
+}
+
+.timeline > li > .timeline-panel.warning {
+    box-shadow: 0 1px 4px 0 #ff9900;
+}
+
+.timeline > li > .timeline-panel.danger {
+    box-shadow: 0 1px 4px 0 #f44336;
+}

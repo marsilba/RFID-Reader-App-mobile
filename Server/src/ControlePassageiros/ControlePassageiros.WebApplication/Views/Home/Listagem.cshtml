@@ -1,0 +1,121 @@
+﻿@model List<ControlePassageiros.WebApplication.PassageiroResponse>
+@{
+    Layout = null;
+}
+
+<div class="form-row d-flex justify-content-center">
+    <div class="col-lg-4 col-md-3 col-sm-12">
+        <div class="card card-stats" style="width: 95%;">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">group</i>
+                </div>
+                <p id="local1" class="card-category font-weight-bold" style="font-size: 25px;"></p>
+                <p class="card-category font-weight-bold card-legend" style="font-size: 18px;">Usuários</p>
+
+            </div>
+            <div class="card-footer">
+                <h3 id="quantidade1" class="card-title font-weight-bold card-legend" style="margin-left: auto; color: #ababab;">Total: @Model.Count</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-12">
+        <div class="card card-stats" style="width: 95%;">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">how_to_reg</i>
+                </div>
+                <p id="local3" class="card-category font-weight-bold" style="font-size: 25px;"></p>
+                <p class="card-category font-weight-bold card-legend" style="font-size: 18px;">Liberados</p>
+            </div>
+            <div class="card-footer">
+                <h3 id="quantidade3" class="card-title font-weight-bold card-legend" style="margin-left: auto; color: #ababab;">Total: @Model.Where(x => x.Situacao).Count()</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-12">
+        <div class="card card-stats" style="width: 95%;">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">group_off</i>
+                </div>
+                <p id="local3" class="card-category font-weight-bold" style="font-size: 25px;"></p>
+                <p class="card-category font-weight-bold card-legend" style="font-size: 18px;">Bloqueados</p>
+            </div>
+            <div class="card-footer">
+                <h3 id="quantidade3" class="card-title font-weight-bold card-legend" style="margin-left: auto; color: #ababab;">Total: @Model.Where(x => !x.Situacao).Count()</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="margin-top: -20px;">
+    <div class="card-body fundo-cinza pt-5">
+
+        @foreach (var passageiro in Model)
+        {
+            <div class="card card-form card-box pt-1">
+                <div class="form-row-rel">
+                    <div class="col-md-1">
+                        <img src="data:image/jpeg;base64,@passageiro.Foto" style="width: 85px; border-radius: 50%;" />
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 mt-4 ml-1">
+                        <div class="list-group">
+                            <div class="list-group-item">@Html.LabelFor(x => x.FirstOrDefault().Nome, new { @class = "text-uppercase legenda" })</div>
+                            <div class="list-group-item">@Html.Label("", passageiro.Nome, new { @class = "dados text-uppercase" })</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 mt-4">
+                        <div class="list-group">
+                            <div class="list-group-item">@Html.LabelFor(x => x.FirstOrDefault().Condominio, new { @class = "text-uppercase legenda" })</div>
+                            <div class="list-group-item">@Html.Label("", passageiro.Condominio, new { @class = "dados text-uppercase" })</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 mt-4">
+                        <div class="list-group">
+                            <div class="list-group-item">@Html.LabelFor(x => x.FirstOrDefault().Rfid, new { @class = "text-uppercase legenda" })</div>
+                            <div class="list-group-item">@Html.Label("", passageiro.Rfid, new { @class = "dados text-uppercase" })</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 mt-4">
+                        <div class="list-group">
+                            <div class="list-group-item">@Html.LabelFor(x => x.FirstOrDefault().StatusAtual, new { @class = "text-uppercase legenda" })</div>
+
+                            @if (passageiro.Situacao)
+                            {
+                                <button type="button" class="bg-liberado" disabled>@passageiro.StatusAtual</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="bg bg-bloqueado">@passageiro.StatusAtual</button>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 mt-5">
+                        <button type="button" rel="tooltip" class="btn botao-editar" data-original-title="" title=""
+                            onclick="editar('@passageiro.Rfid');">
+                            <i class="material-icons md-20">edit_square</i>
+                        </button>
+
+                        <button type="button" rel="tooltip" class="btn botao-bloqueado" data-original-title="" title=""
+                            onclick="bloquear('@passageiro.Rfid');">
+                            <i class="material-icons md-20">block</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+
+        <div class="form-row pull-right">
+            @Html.DisplayForModel("BotoesFiltro")
+        </div>
+
+    </div>
+</div>
+
