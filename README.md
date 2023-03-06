@@ -44,5 +44,8 @@ It is not necessary to have an internet signal to validate the RFID card since t
 
 If it were to depend on the 4G signal to query the server, there are places with shadow areas where the 4G signal does not work, so it would not be possible to validate the RFID card, so the local database is always kept up to date.
 
+<h2>Example of operation</h2>
+<br>
+
 https://user-images.githubusercontent.com/28272136/221397336-95cabc65-3735-431e-b69e-d4cfbcca2bd7.mp4
 
