@@ -6,7 +6,7 @@ An ESP32 was used along with an RFID reader MRFC522 and the app used Cordova and
 
 As the reader will be placed on a bus, the validation will be done by a local database in the app, using SQLite. The app queries the server for updates, but the validation is only on the local database, to avoid errors when using an online server for validation.
 
-How it works:
+<h2>How it works:</h2>
 
 When passing the card through the rfid reader, the ESP32 reads it and sends it via Wifi to the app, which receives the data and queries it directly in the local SQLite.
 
@@ -16,11 +16,11 @@ If the passenger is not found at the local database, an error message will be di
 
 All updates performed on the server are replicated on all readers, as the reader searches for updates in a time interval.
 
-Hardware used:
+<h3>Hardware used:</h3>
 - Esp32
 - RFID reader MRFC522
 
-Software:
+<h3>Software:</h3>
 - Cordova
 - Javascript
 - jQuery
@@ -29,7 +29,7 @@ Software:
 - C++ (Esp32)
 - C# (Server)
 
-Operation:
+<h2>Operation:</h2>
 
 - Enter the admin and register a passenger
 - Send a photo and inform the name and company
@@ -43,8 +43,6 @@ Operation:
 It is not necessary to have an internet signal to validate the RFID card since this validation is done directly in the local database.
 
 If it were to depend on the 4G signal to query the server, there are places with shadow areas where the 4G signal does not work, so it would not be possible to validate the RFID card, so the local database is always kept up to date.
-
-
 
 https://user-images.githubusercontent.com/28272136/221397336-95cabc65-3735-431e-b69e-d4cfbcca2bd7.mp4
 
